@@ -5,15 +5,9 @@ const server = module.exports = require('http').createServer(app);
 
 require('./communication/webSockets');
 var modbus = require('./communication/modbus');
-var kwh = require('./routes/kwh');
-var amp = require('./routes/amper');
-var pow = require('./routes/power');
-var volt = require('./routes/voltage');
-var extras = require('./routes/extras').router;
-var zones = require('./routes/zones').router;
-var motions = require('./routes/motions').router;
+var inputs = require('./routes/inputs').router;
+var outputs = require('./routes/outputs').router;
 
-var notifications = require('./routes/notifications');
 var auth = require('./routes/auth');
 
 const cors = require("cors")
@@ -27,14 +21,9 @@ app.get('/', (req, res) => {
 })
 
 app.use('/modbus', modbus);
-app.use('/kwh', kwh);
-app.use('/amp', amp);
-app.use('/pow', pow);
-app.use('/volt', volt);
-app.use('/extras', extras);
-app.use('/zones', zones);
-app.use('/motions', motions);
-app.use('/notifications', notifications);
+app.use('/inputs', inputs);
+app.use('/outputs', outputs);
+
 app.use('/auth', auth);
 
 server.listen(port, () => {

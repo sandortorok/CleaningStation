@@ -5,7 +5,7 @@ var db = mysql.createPool({
     host: "localhost",
     user: "Sanyi",
     password: "sakkiraly11",
-    database:'energyDB'
+    database:'cleaningStation'
 });
 
 
