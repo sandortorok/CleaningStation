@@ -1,0 +1,21 @@
+@keyframes motorRotate {
+  from {
+      transform: translateY(0);
+  }
+  to {
+      transform: translateY(-79px);
+  }
+}
+.rotating line{
+  animation: motorRotate 0.15s linear infinite
+}
+.fastRotating line{
+  animation: motorRotate 0.1s linear infinite
+}
+#KBox:hover, #ABox:hover{
+  filter:brightness(80%);
+  cursor:pointer;
+}
+.text{
+  pointer-events: none;
+}
