@@ -1,0 +1,24 @@
+<div class=" content">
+    <h1>Frekvenciaváltók</h1>
+    <div style="display: flex;gap:50px">
+      <div style="display: inline-block; text-align: center;">
+        <h1>1-es szivattyú</h1>
+        <app-pump-svg [speed]="speed1"></app-pump-svg>
+        <h3 style="margin-top:20px">{{speed1}} Hz</h3>
+      </div>
+      <div style="display: inline-block; text-align: center;">
+        <h1>2-es szivattyú</h1>
+        <app-pump-svg [speed]="speed2"></app-pump-svg>
+        <h3 style="margin-top:20px">{{speed2}} Hz</h3>
+      </div>
+      <div style="display: inline-block; text-align: center;">
+        <h1>3-as szivattyú</h1>
+        <app-pump-svg [speed]="speed3"></app-pump-svg>
+        <h3 style="margin-top:20px">{{speed3}} Hz</h3>
+      </div>
+    </div>
+    <h1>Hőmérséklet: 20 °C</h1>
+    <h1>Bemenő nyomás: 15 bar</h1>
+    <h1>Kimenő nyomás: 10 bar</h1>
+
+</div>

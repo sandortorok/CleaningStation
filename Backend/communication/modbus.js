@@ -68,19 +68,19 @@ async function regularSave(){
     }, 1000 * 5);
 }
 
-setInterval(() => {
-    saveArchive('amper')
-    saveArchive('voltage')
-    saveArchive('power')
-    saveArchive('kw')
-}, 1000 * 60 * 15)
+// setInterval(() => {
+//     saveArchive('amper')
+//     saveArchive('voltage')
+//     saveArchive('power')
+//     saveArchive('kw')
+// }, 1000 * 60 * 15)
 
-setInterval(() => {
-    deleteOld('amper')
-    deleteOld('voltage')
-    deleteOld('power')
-    deleteOld('kw')
-}, 1000 * 60 * 60 * 12)
+// setInterval(() => {
+//     deleteOld('amper')
+//     deleteOld('voltage')
+//     deleteOld('power')
+//     deleteOld('kw')
+// }, 1000 * 60 * 60 * 12)
 
 module.exports = router;
 

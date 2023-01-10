@@ -1,0 +1,23 @@
+@keyframes pumpRotate {
+  from {
+      transform: rotate(0);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+.rotating{
+  transform-origin: 50% 50%;
+  animation: pumpRotate 2s linear infinite
+}
+.fastRotating{
+  transform-origin: 50% 50%;
+  animation: pumpRotate 1s linear infinite
+}
+.triangle{
+  cursor: pointer;
+}
+.triangle:hover{
+  filter:brightness(80%)
+}
+

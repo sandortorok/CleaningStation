@@ -1,7 +1,5 @@
 import { WebsocketService } from './services/web-socket.service';
-import { NotificationService } from './services/notification.service';
 import { ExcelService } from './services/excel.service';
-import { ZoneService } from './services/zone.service';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { FormsModule, NG_VALIDATORS, ReactiveFormsModule } from "@angular/forms";
@@ -36,7 +34,7 @@ import { ForbiddenValidatorDirective } from './validators/forbidden-name.directi
     ToastrModule.forRoot()
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, SanitizeHtmlPipe, LoginComponent, ForbiddenValidatorDirective],
-  providers: [ExcelService, NotificationService, WebsocketService, ZoneService,
+  providers: [ExcelService, WebsocketService,
      { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
       { provide: NG_VALIDATORS, useExisting: ForbiddenValidatorDirective, multi: true }],
   bootstrap: [AppComponent]

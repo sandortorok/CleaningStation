@@ -1,0 +1,13 @@
+<div class=" content">
+  <h1>Hibaüzenetek</h1>
+  <div style="display: block; min-height: 100px; border-radius : 25px; border: 2px solid white;">
+    <ul style="margin: 1rem 0">
+      <li *ngFor="let message of messages">
+        <span>
+          {{message.message}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{message.timestamp.toLocaleString()}}
+        </span>
+      </li>
+    </ul>
+  </div>
+  <!-- <app-lamp-svg></app-lamp-svg> -->
+</div>

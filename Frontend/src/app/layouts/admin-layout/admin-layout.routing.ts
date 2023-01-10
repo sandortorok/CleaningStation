@@ -2,8 +2,8 @@ import { Routes } from "@angular/router";
 
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
 import { SwitchesComponent } from "../../pages/switches/switches.component";
-import { LampsComponent } from "src/app/pages/lamps/lamps.component";
-import { MotionsComponent } from "src/app/pages/motions/motions.component";
+import { ErrorMessagesComponent } from "src/app/pages/error-messages/error-messages.component";
+import { PumpsComponent } from "src/app/pages/pumps/pumps.component";
 import { VoltageDashboardComponent } from '../../pages/dashboard/voltage-dashboard/voltage-dashboard.component';
 import { PowerFactorComponent } from "src/app/pages/dashboard/power-factor/power-factor.component";
 import { ActiveConsumptionComponent } from "src/app/pages/dashboard/active-consumption/active-consumption.component";
@@ -19,11 +19,11 @@ import { ReactiveConsumptionComponent } from "src/app/pages/dashboard/reactive-c
 import { IconsComponent } from "../../pages/icons/icons.component";
 
 export const AdminLayoutRoutes: Routes = [
-  { path: "dashboard", component: DashboardComponent },
+  // { path: "dashboard", component: DashboardComponent },
   { path: "switches", component: SwitchesComponent },
   // { path: "notifications", component: NotificationsComponent },
-  { path: "lamps", component: LampsComponent },
-  { path: "motions", component: MotionsComponent },
+  { path: "errors", component: ErrorMessagesComponent },
+  { path: "fchanger", component: PumpsComponent },
   { path: "dashboard/current", component: CurrentDashboardComponent},
   { path: "dashboard/voltage", component: VoltageDashboardComponent},
   { path: "dashboard/activepower", component: ActivePowerComponent},

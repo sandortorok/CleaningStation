@@ -19,14 +19,16 @@
       id="navigation"
       type="button"
     >
-    
+
       <span class=" navbar-toggler-bar navbar-kebab"> </span>
       <span class=" navbar-toggler-bar navbar-kebab"> </span>
       <span class=" navbar-toggler-bar navbar-kebab"> </span>
     </button>
     <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
       <ul class=" navbar-nav ml-auto">
-        <li class=" nav-item" ngbDropdown (openChange)="notificationToggle($event)">
+
+        <li class=" nav-item" ngbDropdown>
+          <app-alert-icon ></app-alert-icon>
           <a
             class=" nav-link"
             data-toggle="dropdown"
@@ -34,21 +36,10 @@
             ngbDropdownToggle
           >
             <div class="d-none d-lg-block d-xl-block" [class.notification]="!all_seen"></div>
-            <i class=" tim-icons icon-sound-wave"> </i>
+            <!-- <i class=" tim-icons icon-sound-wave"> </i> -->
             <p class=" d-lg-none">Notifications</p>
           </a>
           <ul class=" dropdown-menu-right dropdown-navbar" ngbDropdownMenu>
-            <li *ngFor="let notification of notifications.slice(-10).reverse()" class="nav-link">
-              <a class="nav-item" style="position:relative" href="javascript:void(0)" ngbDropdownItem>
-                {{notification.text}}
-                <div [class.not_seen]="!notification.seen" class="not_seen" [class]="notification.color"></div>
-              </a>
-            </li>
-            <!-- <li class="nav-link">
-              <a class="nav-item" style="position:relative" href="javascript:void(0)" ngbDropdownItem>
-                TÖBBI
-              </a>
-            </li> -->
           </ul>
         </li>
         <li class=" nav-item" ngbDropdown>

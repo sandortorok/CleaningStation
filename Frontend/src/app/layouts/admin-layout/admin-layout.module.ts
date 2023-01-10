@@ -7,9 +7,8 @@ import { ApparentPowerComponent } from "src/app/pages/dashboard/apparent-power/a
 import { ReactivePowerComponent } from "src/app/pages/dashboard/reactive-power/reactive-power.component";
 import { ReactiveConsumptionComponent } from "src/app/pages/dashboard/reactive-consumption/reactive-consumption.component";
 
-import { MotorSVGComponent } from '../../components/motor-svg/motor-svg.component';
+import { PumpSVGComponent } from '../../components/pump-svg/pump-svg.component';
 import { ToggleButtonComponent } from './../../components/toggle-button/toggle-button.component';
-import { LampSVGComponent } from './../../components/lamp-svg/lamp-svg.component';
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
@@ -19,11 +18,10 @@ import { FormsModule } from "@angular/forms";
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
 import { SwitchesComponent } from "../../pages/switches/switches.component";
-import { LampsComponent } from "../../pages/lamps/lamps.component";
+import { ErrorMessagesComponent } from "../../pages/error-messages/error-messages.component";
 import { LedSwitchComponent } from './../../components/led-switch/led-switch.component';
 import { Led50SwitchComponent } from './../../components/led50-switch/led50-switch.component';
-import { NotificationsComponent } from "../../pages/notifications/notifications.component";
-import { MotionsComponent } from "../../pages/motions/motions.component";
+import { PumpsComponent } from "../../pages/pumps/pumps.component";
 import { TypographyComponent } from "../../pages/typography/typography.component";
 // import { IconsComponent } from "../../pages/icons/icons.component";
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
@@ -47,14 +45,12 @@ import { XlsSVGComponent } from 'src/app/components/xls-svg/xls-svg.component';
     CurrentDashboardComponent,
     VoltageDashboardComponent,
     TypographyComponent,
-    NotificationsComponent,
     SwitchesComponent,
     LedSwitchComponent,
     Led50SwitchComponent,
-    LampsComponent,
-    MotionsComponent,
-    MotorSVGComponent,
-    LampSVGComponent,
+    ErrorMessagesComponent,
+    PumpsComponent,
+    PumpSVGComponent,
     ToggleButtonComponent,
     ThreeWayChartComponent,
     XlsSVGComponent,

@@ -1,5 +1,4 @@
 import { HttpService } from './../../services/http.service';
-import { NotificationService, Notification } from './../../services/notification.service';
 import { Component, OnInit, ElementRef, OnDestroy } from "@angular/core";
 import { ROUTES } from "../sidebar/sidebar.component";
 import { Location } from "@angular/common";
@@ -26,7 +25,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private element: ElementRef,
     private router: Router,
     private modalService: NgbModal,
-    private notificationService: NotificationService,
     private httpService: HttpService
   ) {
     this.location = location;
@@ -43,13 +41,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
        navbar.classList.add('navbar-transparent');
      }
    };
-   
+
   ngOnInit() {
-    this.notificationService.notificationCast.subscribe(newArr=>{
-      this.notifications = newArr
-      this.allSeenCheck()
-    })
-    this.allSeenCheck()
     window.addEventListener("resize", this.updateColor);
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
@@ -195,27 +188,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     } else {
       return  `with: ${reason}`;
     }
-  }
-  notificationToggle(is_open){
-    console.log('checking', is_open);
-    if(!is_open){
-      let recently_seen:Notification[] = []
-      this.notifications.forEach(n=>{
-        n.seen = true;
-        recently_seen.push(n)
-        this.httpService.seenNotification(n).subscribe(res=>{})
-      })
-      this.allSeenCheck();
-    }
-  }
-  allSeenCheck(){
-    let all_seen = true;
-    this.notifications.forEach(n=>{
-      if(!n.seen){
-        all_seen = false
-      }
-    })
-    this.all_seen = all_seen;
   }
   ngOnDestroy(){
      window.removeEventListener("resize", this.updateColor);

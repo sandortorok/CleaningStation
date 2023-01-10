@@ -26,9 +26,9 @@ export class LoginComponent implements OnInit {
       ]),
       password: new FormControl(this.loginUserData.password),
     });
-  
+
   }
-  
+
   get username() { return this.authForm.get('username'); }
 
   get password() { return this.authForm.get('password'); }
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       next: res => {
         this.invalidCredentials = false;
         localStorage.setItem('token', res['token']);
-        this._router.navigate(['/lamps'])
+        this._router.navigate(['/fchanger'])
       },
       error: err => {
         this.invalidCredentials = true;

@@ -17,64 +17,28 @@ export const ROUTES: RouteInfo[] = [
     children: [
       {
         path: '/current',
-        title: "Áramerősség",
+        title: "Hőmérséklet",
         icon: "",
         class: ""
       },
       {
         path: '/voltage',
-        title: "Feszültség",
+        title: "Nyomások (Ki-/Bemenő)",
         icon: "",
         class: ""
-      },
-      {
-        path: '/activepower',
-        title: "Hatásos teljesítmény",
-        icon: "",
-        class: ""
-      },
-      {
-        path: '/reactivepower',
-        title: "Meddő teljesítmény",
-        icon: "",
-        class: ""
-      },
-      {
-        path: '/apparentpower',
-        title: "Látszólagos teljesítmény",
-        icon: "",
-        class: ""
-      },
-      {
-        path: '/powerfactor',
-        title: "Teljesítmény tényező",
-        icon: "",
-        class: ""
-      },
-      {
-        path: '/activeconsumption',
-        title: "Hatásos fogyasztás",
-        icon: "",
-        class: ""
-      },
-      {
-        path: '/reactiveconsumption',
-        title: "Meddő fogyasztás",
-        icon: "",
-        class: ""
-      },
+      }
     ]
   },
-  // {
-  //   path: "/icons",
-  //   title: "Icons",
-  //   icon: "icon-atom",
-  //   class: ""
-  // },
+  {
+    path: "/icons",
+    title: "Icons",
+    icon: "icon-atom",
+    class: ""
+  },
   {
     path: "/switches",
-    title: "Kapcsolók",
-    icon: "icon-button-power",
+    title: "Nyomás",
+    icon: "icon-triangle-right-17",
     class: ""
   },
   // {
@@ -85,13 +49,13 @@ export const ROUTES: RouteInfo[] = [
   // },
 
   {
-    path: "/lamps",
-    title: "Lámpák",
-    icon: "icon-bulb-63",
+    path: "/errors",
+    title: "Hibaüzenetek",
+    icon: "icon-simple-remove",
     class: ""
   },
   {
-    path: "/motions",
+    path: "/fchanger",
     title: "Frekvenciaváltó",
     icon: "icon-sound-wave",
     class: ""

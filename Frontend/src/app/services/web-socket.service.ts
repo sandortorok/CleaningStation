@@ -1,4 +1,3 @@
-import { NotificationService, Color } from './notification.service';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -12,7 +11,7 @@ export class WebsocketService {
   // webSocket: WebSocket = new WebSocket('ws://192.168.4.1:3000/');
   // webSocket: WebSocket = new WebSocket('ws://localhost:3000/');
 
-  constructor() { 
+  constructor() {
     this.openWebSocket();
   }
 
@@ -46,7 +45,7 @@ export class WebsocketService {
             this.outputMessage$.next('changes on output2')
           }
         }
-      }    
+      }
     };
 
     this.webSocket.onclose = (event) => {
