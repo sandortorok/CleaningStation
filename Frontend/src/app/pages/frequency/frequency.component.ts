@@ -2,10 +2,10 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "app-motions",
-  templateUrl: "pumps.component.html",
-  styleUrls: ["pumps.component.scss"]
+  templateUrl: "frequency.component.html",
+  styleUrls: ["frequency.component.scss"]
 })
-export class PumpsComponent implements OnInit {
+export class FrequencyComponent implements OnInit {
   constructor() {}
   speed1 = 50
   speed2 = 10

@@ -1,0 +1,14 @@
+<div class="content">
+  <div class="row">
+      <div class=" col-lg-12">
+          <app-three-way-chart
+            title="Nyomás (bar)" chartid="chartBig2" endPointName="pressure" measureUnit="bar"
+            [inputData]="[
+                  {type: 1, rgb: '176,19,150', title: 'Kimenő nyomás'},
+                  {type: 2, rgb: '29,140,248', title: 'Bejövő nyomás'}
+            ]"
+            rgb1="176,19,150" rgb2="29,140,248" rgb3="0,214,180">
+          </app-three-way-chart>
+        </div>
+  </div>
+</div>

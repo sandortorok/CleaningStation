@@ -16,14 +16,20 @@ export const ROUTES: RouteInfo[] = [
     class: "",
     children: [
       {
-        path: '/current',
+        path: '/temp',
         title: "Hőmérséklet",
         icon: "",
         class: ""
       },
       {
-        path: '/voltage',
+        path: '/pressure',
         title: "Nyomások (Ki-/Bemenő)",
+        icon: "",
+        class: ""
+      },
+      {
+        path: '/water',
+        title: "Vízmennyiség",
         icon: "",
         class: ""
       }
@@ -35,19 +41,19 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-atom",
     class: ""
   },
-  {
-    path: "/switches",
-    title: "Nyomás",
-    icon: "icon-triangle-right-17",
-    class: ""
-  },
   // {
-  //   path: "/notifications",
+    //   path: "/notifications",
   //   title: "Értesítések",
   //   icon: "icon-bell-55",
   //   class: ""
   // },
 
+  {
+    path: "/fchanger",
+    title: "Frekvenciaváltó",
+    icon: "icon-sound-wave",
+    class: ""
+  },
   {
     path: "/errors",
     title: "Hibaüzenetek",
@@ -55,11 +61,11 @@ export const ROUTES: RouteInfo[] = [
     class: ""
   },
   {
-    path: "/fchanger",
-    title: "Frekvenciaváltó",
-    icon: "icon-sound-wave",
+    path: "/settings",
+    title: "Beállítások",
+    icon: "icon-settings-gear-63",
     class: ""
-  }
+  },
   // {
   //   path: "/typography",
   //   title: "Typography",

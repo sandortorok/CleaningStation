@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-power-factor',
-  templateUrl: './power-factor.component.html',
-  styleUrls: ['./power-factor.component.scss']
+  templateUrl: './water.component.html',
+  styleUrls: ['./water.component.scss']
 })
-export class PowerFactorComponent implements OnInit {
+export class WaterComponent implements OnInit {
 
   constructor() { }
 
