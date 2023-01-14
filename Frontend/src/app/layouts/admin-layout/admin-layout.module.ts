@@ -1,3 +1,4 @@
+import { OnOffButtonComponent } from './../../components/on-off-button/on-off-button.component';
 import { PressureComponent } from '../../pages/dashboard/pressure/pressure.component';
 import { TemperatureComponent } from '../../pages/dashboard/temperature/temperature.component';
 import { PumpSVGComponent } from '../../components/pump-svg/pump-svg.component';
@@ -22,6 +23,7 @@ import { ThreeWayChartComponent } from 'src/app/components/three-way-chart/three
 import { PngSVGComponent } from 'src/app/components/png-svg/png-svg.component';
 import { XlsSVGComponent } from 'src/app/components/xls-svg/xls-svg.component';
 import { WaterComponent } from 'src/app/pages/dashboard/water/water.component';
+import { InputOutputComponent } from 'src/app/pages/input-output/input-output.component';
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import { WaterComponent } from 'src/app/pages/dashboard/water/water.component';
     XlsSVGComponent,
     PngSVGComponent,
     WaterComponent,
+    OnOffButtonComponent,
+    InputOutputComponent
     // IconsComponent,
     // RtlComponent
   ]

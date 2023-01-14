@@ -1,3 +1,4 @@
+import { WebsocketService } from './services/web-socket.service';
 import { Component } from "@angular/core";
 import 'chartjs-adapter-date-fns';
 
@@ -7,6 +8,6 @@ import 'chartjs-adapter-date-fns';
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  constructor(){
+  constructor(private wss: WebsocketService){
   }
 }

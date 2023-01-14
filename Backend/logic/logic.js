@@ -1,7 +1,8 @@
-const { saveInputs } = require('../routes/inputs');
-const { saveOutputs } = require('../routes/outputs');
+const { saveInputs, getDInputs } = require('../routes/inputs');
+const { saveOutputs, getDOutputs } = require('../routes/outputs');
+const { saveAInputs, getAInputs } = require('../routes/aInputs');
 
-function input1(payload){
+function dInputs(payload){
     let bin = dec2bin16(payload)    
     let obj = {
       M1Error : parseInt(bin[0]),
@@ -14,14 +15,14 @@ function input1(payload){
       F2Error : parseInt(bin[7]),
       F3Error : parseInt(bin[8]),
       Auto : parseInt(bin[9]),
-
+        
     }
     let inputChanged = false;
-    inputs.forEach(extra=>{
-        if(Object.keys(obj).includes(extra.name)){
-            if(extra.is_on != obj[extra.name]){
-                extra.is_on = obj[extra.name];
-                console.log(`Extra ${extra.name} changed to ${extra.is_on}`);
+    inputs.forEach(input=>{
+        if(Object.keys(obj).includes(input.name)){
+            if(input.is_on != obj[input.name]){
+                input.is_on = obj[input.name];
+                console.log(`Input ${input.name} changed to ${input.is_on}`);
                 inputChanged = true;
             }
         }
@@ -31,22 +32,48 @@ function input1(payload){
     }
     calculateOutput()
 }
-
-
-function initInputs(initData){
-    inputs = initData
-    console.log('inputs', inputs.length);
+function wIn(payload){
+    inputChanged = false
+    aInputs.forEach(ai=>{
+        if(ai.name == 'wIn'){
+            if(ai.value != payload){
+                inputChanged = true
+                ai.value = payload
+                saveAInputs([ai]);
+            }
+        }
+    })
+    calculateOutput()
 }
-
-function initOutputs(initData){
-    outputs = initData
-    console.log('outputs', outputs.length);
+function wOut(payload){
+    inputChanged = false
+    aInputs.forEach(ai=>{
+        if(ai.name == 'wOut'){
+            if(ai.value != payload){
+                inputChanged = true
+                ai.value = payload
+                saveAInputs([ai]);
+            }
+        }
+    })
+    calculateOutput()
 }
-
-
 let inputs = []
+let aInputs = []
 let outputs = []
 
+getDInputs(result=>{
+    inputs = JSON.parse(JSON.stringify(result))
+    console.log('Inputs: ', inputs.length);
+})
+getAInputs(result=>{
+    aInputs = JSON.parse(JSON.stringify(result))
+    console.log('Analog Inputs: ', aInputs.length);
+})
+getDOutputs(result=>{
+    outputs = JSON.parse(JSON.stringify(result))
+    console.log('Outputs: ', outputs.length);
+})
 let wsOutput;
 
 function calculateOutput(){
@@ -62,18 +89,22 @@ setTimeout(()=>{
 },10)
 
 module.exports = {
-    initInputs,
-    initOutputs,
-    input1,
+    dInputs,
+    wIn,
+    wOut
 }
 
 function dec2bin16(dec) {
     let bin = (dec >>> 0).toString(2);
+    if(bin.length > 16){
+        return bin
+    }
     while(bin.length!=16){
         bin = "0" + bin;
     }
     return bin
 }
+
 function reverse(s){
     return s.split("").reverse().join("");
 }

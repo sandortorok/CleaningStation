@@ -11,6 +11,18 @@ router.get('/', (req, res) =>{
     })
 })
 
+function addErrorMessage(message){
+    var date = new Date();
+    date = date.getUTCFullYear() + '-' + ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' + 
+        ('00' + date.getUTCDate()).slice(-2) + ' ' + ('00' + date.getUTCHours()).slice(-2) + ':' + 
+        ('00' + date.getUTCMinutes()).slice(-2) + ':' + ('00' + date.getUTCSeconds()).slice(-2);
+    console.log(date);
+
+    let sql = `INSERT INTO errorMessages (message, timestamp) values ('${message}', '${date}')`
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+    })
+}
 function saveInputs(inputs){
     inputs.forEach(el => {
         let sql = `UPDATE input SET is_on = ${el.is_on} WHERE name = '${el.name}'`

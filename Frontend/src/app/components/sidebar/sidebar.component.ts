@@ -66,12 +66,12 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-settings-gear-63",
     class: ""
   },
-  // {
-  //   path: "/typography",
-  //   title: "Typography",
-  //   icon: "icon-align-center",
-  //   class: ""
-  // }
+  {
+    path: "/io",
+    title: "Bemenetek/Kimenetek",
+    icon: "icon-link-72",
+    class: ""
+  }
 ];
 
 @Component({
@@ -85,11 +85,23 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.changeSidebarColor('blue')
   }
   isMobileMenu() {
     if (window.innerWidth > 991) {
       return false;
     }
     return true;
+  }
+  changeSidebarColor(color){
+    var sidebar = document.getElementsByClassName('sidebar')[0];
+    var mainPanel = document.getElementsByClassName('main-panel')[0];
+
+    if(sidebar != undefined){
+        sidebar.setAttribute('data',color);
+    }
+    if(mainPanel != undefined){
+        mainPanel.setAttribute('data',color);
+    }
   }
 }

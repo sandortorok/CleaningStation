@@ -1,0 +1,65 @@
+<div class="content">
+    <h2>Digitális Bemenetek</h2>
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Bit</th>
+                    <th>Név</th>
+                    <th>Leírás</th>
+                    <th>Érték</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let di of dInputs">
+                    <td>{{di.bit}}</td>
+                    <td>{{di.name}}</td>
+                    <td>{{di.description}}</td>
+                    <td>{{di.is_on}}</td>
+                </tr>
+            <tbody>
+        </table>
+    </div>
+    <h2>Analóg Bemenetek</h2>
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Bit</th>
+                    <th>Név</th>
+                    <th>Leírás</th>
+                    <th>Érték</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ai of aInputs">
+                    <td>{{ai.bit}}</td>
+                    <td>{{ai.name}}</td>
+                    <td>{{ai.description}}</td>
+                    <td>{{ai.value}}</td>
+                </tr>
+            <tbody>
+        </table>
+    </div>
+    <h2>Digitális Kimenetek</h2>
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Bit</th>
+                    <th>Név</th>
+                    <th>Leírás</th>
+                    <th>Érték</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let do of dOutputs">
+                    <td>{{do.bit}}</td>
+                    <td>{{do.name}}</td>
+                    <td>{{do.description}}</td>
+                    <td>{{do.is_on}}</td>
+                </tr>
+            <tbody>
+        </table>
+    </div>
+</div>

@@ -7,6 +7,9 @@ require('./communication/webSockets');
 var modbus = require('./communication/modbus');
 var inputs = require('./routes/inputs').router;
 var outputs = require('./routes/outputs').router;
+var aInputs = require('./routes/aInputs').router;
+var pumpOrder = require('./routes/pumpOrder').router;
+
 var errorMessages = require('./routes/errorMessages').router;
 
 var auth = require('./routes/auth');
@@ -24,6 +27,9 @@ app.get('/', (req, res) => {
 app.use('/modbus', modbus);
 app.use('/inputs', inputs);
 app.use('/outputs', outputs);
+app.use('/aInputs', aInputs);
+app.use('/pumpOrder', pumpOrder);
+
 app.use('/errorMessages', errorMessages);
 
 app.use('/auth', auth);

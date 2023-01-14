@@ -344,7 +344,9 @@
     &[data="green"]{
       @include linear-gradient($success-states, $success);
     }
-
+    &[data="orange"]{
+      @include linear-gradient($warning-states, $warning);
+    }
     .user{
         padding-bottom: 20px;
         margin:20px auto 0;

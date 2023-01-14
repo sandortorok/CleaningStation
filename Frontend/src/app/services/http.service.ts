@@ -38,4 +38,10 @@ export class HttpService {
   getErrorMessages(){
     return this.http.get(this.url + `/errorMessages`)
   }
+  getPumpOrder(){
+    return this.http.get(this.url + '/pumpOrder')
+  }
+  savePumpOrder(pumps){
+    return this.http.post(this.url + '/pumpOrder/pumps', {pumps})
+  }
 }

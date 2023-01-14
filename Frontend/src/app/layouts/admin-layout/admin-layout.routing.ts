@@ -1,3 +1,4 @@
+import { InputOutputComponent } from './../../pages/input-output/input-output.component';
 import { Routes } from "@angular/router";
 
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
@@ -18,6 +19,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: "settings", component: SettingsComponent },
   { path: "errors", component: ErrorMessagesComponent },
   { path: "fchanger", component: FrequencyComponent },
+  { path: "io", component: InputOutputComponent },
   { path: "dashboard/temp", component: TemperatureComponent},
   { path: "dashboard/pressure", component: PressureComponent},
   { path: "dashboard/water", component: WaterComponent},

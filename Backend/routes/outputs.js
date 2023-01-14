@@ -3,13 +3,14 @@ const express = require("express");
 router = express.Router();
 var db = require('./connectMysql');
 
-let sql = `SELECT * FROM output`
-db.query(sql, (err, result) => {
-    if(err) throw err;
-    let res = Object.values(JSON.parse(JSON.stringify(result)));
-    require('../logic/logic').initOutputs(res)
-})
+function getDOutputs(callback){
+    let sql = `SELECT * FROM output`
 
+    db.query(sql, function(err, results){
+          if (err) throw err
+          return callback(results);
+  })
+}
 
 router.get('/', (req, res) =>{
     let sql = `SELECT * FROM output`
@@ -28,4 +29,4 @@ function saveOutputs(outputs){
     });
 }
 
-module.exports = {router, saveOutputs};
+module.exports = {router, saveOutputs, getDOutputs};

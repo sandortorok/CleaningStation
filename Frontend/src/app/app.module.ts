@@ -19,6 +19,7 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 import { LoginComponent } from './pages/login/login.component';
 import { TokenInterceptor } from './interceptors/token-interceptor';
 import { ForbiddenValidatorDirective } from './validators/forbidden-name.directive';
+import { InputOutputComponent } from './pages/input-output/input-output.component';
 
 
 @NgModule({
