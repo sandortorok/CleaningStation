@@ -13,7 +13,7 @@ export interface aInput{
   name: String,
   description: String,
   bit: Number,
-  value: Number
+  value: number
 }
 
 export interface dOutput{

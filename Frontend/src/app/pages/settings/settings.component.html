@@ -5,7 +5,7 @@
       <button class="btn btn-link" type="button" (click)="add()">
         <span class="chevron"></span>
       </button>
-      <input style="display: inline-block" [(ngModel)]="number" (ngModelChange)="change($event)" type="text"
+      <input style="display: inline-block" [(ngModel)]="goalPressure" (ngModelChange)="change($event)" type="text"
         class="form-control" inputmode="numeric" maxlength="2" style="width: 50px; height: 50px; text-align: center;">
       <button class="btn btn-link" type="button" (click)="descrease()">
         <span class="chevron bottom"></span>
@@ -13,8 +13,6 @@
     </div>
     <label for="" style="align-self:center;margin-left: 10px; margin-bottom: 0"> bar</label>
   </div>
-  <h1 style="margin-top: 30px;">Víz áramlás kapcsoló (Ki/Be)</h1>
-  <app-on-off-button></app-on-off-button>
   <h1 style="margin-top: 30px;">Frekvenciaváltó kapcsolási sorrend</h1>
 
   <div style="display: flex; gap: 20px">

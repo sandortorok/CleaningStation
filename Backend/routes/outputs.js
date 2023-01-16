@@ -20,6 +20,22 @@ router.get('/', (req, res) =>{
     })
 })
 
+router.get('/running', (req, res) =>{
+    let sql = `SELECT * FROM output where name = 'Running'`
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
+router.get('/errors', (req, res) =>{
+    let sql = `SELECT * FROM output where name = 'Errors'`
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
 function saveOutputs(outputs){
     outputs.forEach(el => {
         let sql = `UPDATE output SET is_on = ${el.is_on} WHERE name = '${el.name}'`

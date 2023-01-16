@@ -69,7 +69,7 @@ client.on('connect', () => {
 const logicFunctions = require('../logic/logic')
 client.on('message', (topic, payload) => {
   if(topic === topic1){
-    logicFunctions.dINputs(parseInt(payload.toString()));
+    logicFunctions.dInputs(parseInt(payload.toString()));
     getDInputs(result => {
       result = JSON.parse(JSON.stringify(result))
       sendMSG(JSON.stringify({dInputs: result}))

@@ -46,11 +46,9 @@ function wIn(payload){
     calculateOutput()
 }
 function wOut(payload){
-    inputChanged = false
     aInputs.forEach(ai=>{
         if(ai.name == 'wOut'){
             if(ai.value != payload){
-                inputChanged = true
                 ai.value = payload
                 saveAInputs([ai]);
             }
@@ -64,7 +62,7 @@ let outputs = []
 
 getDInputs(result=>{
     inputs = JSON.parse(JSON.stringify(result))
-    console.log('Inputs: ', inputs.length);
+    console.log('Digital Inputs: ', inputs.length);
 })
 getAInputs(result=>{
     aInputs = JSON.parse(JSON.stringify(result))
@@ -72,7 +70,7 @@ getAInputs(result=>{
 })
 getDOutputs(result=>{
     outputs = JSON.parse(JSON.stringify(result))
-    console.log('Outputs: ', outputs.length);
+    console.log('Digital Outputs: ', outputs.length);
 })
 let wsOutput;
 

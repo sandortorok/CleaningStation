@@ -23,7 +23,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: '/pressure',
-        title: "Nyomások (Ki-/Bemenő)",
+        title: "Nyomások",
         icon: "",
         class: ""
       },

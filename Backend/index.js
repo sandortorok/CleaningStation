@@ -9,6 +9,8 @@ var inputs = require('./routes/inputs').router;
 var outputs = require('./routes/outputs').router;
 var aInputs = require('./routes/aInputs').router;
 var pumpOrder = require('./routes/pumpOrder').router;
+var temperature = require('./routes/temperature').router;
+var frequencies = require('./routes/frequencies').router;
 
 var errorMessages = require('./routes/errorMessages').router;
 
@@ -29,6 +31,8 @@ app.use('/inputs', inputs);
 app.use('/outputs', outputs);
 app.use('/aInputs', aInputs);
 app.use('/pumpOrder', pumpOrder);
+app.use('/temperature', temperature);
+app.use('/frequencies', frequencies);
 
 app.use('/errorMessages', errorMessages);
 

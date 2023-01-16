@@ -20,6 +20,32 @@ router.get('/', (req, res) =>{
     })
 })
 
+router.get('/win', (req, res) =>{
+    let sql = `SELECT * FROM aInput where name = 'wOut'`
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
+router.get('/wout', (req, res) =>{
+    let sql = `SELECT * FROM aInput where name = 'wIn'`
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
+router.post('/goal', (req, res) =>{
+    let pressure = req.body.pressure
+    let sql = `UPDATE aInput SET value = ${pressure} where name = 'wGoal'`
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
+
 function saveAInputs(inputs){
     inputs.forEach(el => {
         let sql = `UPDATE aInput SET value = ${el.value} WHERE name = '${el.name}'`

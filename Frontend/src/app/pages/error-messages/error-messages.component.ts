@@ -8,6 +8,8 @@ import { HttpService } from "src/app/services/http.service";
 })
 export class ErrorMessagesComponent implements OnInit {
   messages:Array<{message:String, timestamp:String}> = []
+  page=1
+  pageSize = 2
   constructor(private httpService: HttpService){}
   ngOnInit() {
     this.httpService.getErrorMessages().subscribe(res=>{
@@ -16,7 +18,6 @@ export class ErrorMessagesComponent implements OnInit {
         let date = new Date(el.timestamp)
         var datestring = date.getFullYear()  + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +  ("0" + date.getDate()).slice(-2) + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
         this.messages.push({message: el.message, timestamp: datestring})
-        console.log(this.messages);
       })
     })
   }

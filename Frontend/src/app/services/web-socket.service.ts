@@ -23,7 +23,7 @@ export class WebsocketService {
     this.openWebSocket();
   }
 
-  public openWebSocket(){
+  openWebSocket(){
     this.webSocket.onopen = (event) => {
       console.log({Websocket: 'OPEN'});
     };
@@ -54,15 +54,26 @@ export class WebsocketService {
   getSpeeds(){
     return this.speed$.value
   }
-  public sendMessage(msg){
+  sendMessage(msg){
     this.webSocket.send(msg);
   }
-
-  public closeWebSocket() {
+  setAInputs(ainputs){
+    this.aInput$.next(ainputs)
+  }
+  setGoal(goal: number){
+    let aInputs = this.aInput$.getValue()
+    aInputs.forEach(ai=>{
+      if(ai.name == 'wGoal'){
+        ai.value = goal
+      }
+    })
+    this.aInput$.next(aInputs)
+  }
+  closeWebSocket() {
     this.webSocket.send('Websocket Closed');
     this.webSocket.close();
   }
-  public isJsonString(str: string) {
+  isJsonString(str: string) {
     try {
         JSON.parse(str);
     } catch (e) {

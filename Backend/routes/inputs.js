@@ -20,6 +20,22 @@ router.get('/', (req, res) =>{
     })
 })
 
+router.get('/wateron', (req, res) =>{
+    let sql = `SELECT * FROM input where name = 'Water_on'`
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
+router.get('/auto', (req, res) =>{
+    let sql = `SELECT * FROM input where name = 'Auto'`
+    db.query(sql, (err, result) => {
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
 function saveInputs(inputs){
     inputs.forEach(el => {
         let sql = `UPDATE input SET is_on = ${el.is_on} WHERE name = '${el.name}'`
