@@ -17,10 +17,10 @@ export interface aInput{
 }
 
 export interface dOutput{
-  name:String,
+  name:string,
   description: String,
-  bit: Number,
-  is_on: Boolean
+  bit: number,
+  is_on: boolean
 }
 @Component({
   selector: 'app-input-output',

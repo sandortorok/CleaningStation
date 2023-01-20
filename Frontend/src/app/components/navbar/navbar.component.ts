@@ -1,3 +1,4 @@
+import { WebsocketService } from './../../services/web-socket.service';
 import { HttpService } from './../../services/http.service';
 import { Component, OnInit, ElementRef, OnDestroy } from "@angular/core";
 import { ROUTES } from "../sidebar/sidebar.component";
@@ -19,13 +20,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private sidebarVisible: boolean;
   public isCollapsed = true;
   closeResult: string;
-  public notifications: Notification[] = []
+  has_error: number = 0; 
   constructor(
     location: Location,
     private element: ElementRef,
     private router: Router,
     private modalService: NgbModal,
-    private httpService: HttpService
+    private wss: WebsocketService
   ) {
     this.location = location;
     this.sidebarVisible = false;
@@ -55,6 +56,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.mobile_menu_visible = 0;
       }
     });
+    this.wss.dOutputCast.subscribe(res=>{
+      let result = Object.values(res)
+      result.forEach(dout=>{
+        if(dout.name === 'Errors'){
+          this.has_error = +(dout.is_on)
+        }
+      })
+    })
   }
 
   collapse() {

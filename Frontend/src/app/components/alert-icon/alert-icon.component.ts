@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 
 enum iconType{
-  success = 1,
-  error = 2
+  success = 0,
+  error = 1
 }
 @Component({
   selector: 'app-alert-icon',
@@ -11,4 +11,5 @@ enum iconType{
 })
 export class AlertIconComponent {
   @Input() type: iconType = iconType.success;
+  allIconTypes = iconType;
 }

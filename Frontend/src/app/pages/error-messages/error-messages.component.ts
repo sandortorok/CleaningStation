@@ -1,3 +1,4 @@
+import { WebsocketService } from './../../services/web-socket.service';
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { HttpService } from "src/app/services/http.service";
 
@@ -10,7 +11,7 @@ export class ErrorMessagesComponent implements OnInit {
   messages:Array<{message:String, timestamp:String}> = []
   page=1
   pageSize = 2
-  constructor(private httpService: HttpService){}
+  constructor(private httpService: HttpService, private wss: WebsocketService){}
   ngOnInit() {
     this.httpService.getErrorMessages().subscribe(res=>{
       let arr = Object.values(res)

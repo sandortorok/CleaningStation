@@ -11,12 +11,13 @@ var saveInterval
 
 async function connect() {
     try {
-        await client.connectRTUBuffered("/dev/ttyUSB0", { baudRate: 38400, dataBits: 8, stopBits: 1, parity: 'even' });
+        await client.connectRTUBuffered("/dev/ttyUSB0", { baudRate: 9600, dataBits: 8, stopBits: 1, parity: 'none'});
         await client.setID(5);
         console.log('\x1b[33m%s\x1b[0m', 'Connected to Modbus');
         return 0
     }
     catch (err) {
+        console.log(err);
         return -1
     }
 }
@@ -32,42 +33,41 @@ async function start() {
         const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
         await delay(5000) /// waiting 1 second.
     }
-    saveInterval = regularSave();
-}
+    await turnOffMotor(1);
+    await setFrequency(1, 3000)
+    await readCurrentFrequency(1)
 
-async function regularSave(){
-    return setInterval(async () => {
-        let port_open = true
-        for (const reg of [20480, 20482, 20484]) {
-            let status_code = await readSaveRegister(reg, 'amperTable')
-            if(status_code == -1){
-                port_open = false
-            }
-        }
-        for (const reg of [20509, 20511, 20513]) {
-            let status_code = await readSaveRegister(reg, 'voltageTable')
-            if(status_code == -1){
-                port_open = false
-            }
-        }
-        for (const reg of [20538, 20540, 20544, 20548]) {
-            let status_code = await readSaveRegister(reg, 'powerTable')
-            if(status_code == -1){
-                port_open = false
-            }
-        }
-        for (const reg of [20592, 20594, 20598, 20600]) {
-            let status_code = await readSaveRegister(reg, 'kwTable')
-            if(status_code == -1){
-                port_open = false
-            }
-        }
-        if(!port_open){
-            start()
-        }
-    }, 1000 * 5);
+    //0000111
 }
-
+async function turnOnMotor(id){
+    await client.setID(id)
+    await client.writeRegister(0x3200, 455).then(data => {
+        console.log('Turned on');
+    })
+}
+async function turnOffMotor(id){
+    await client.setID(id)
+    await client.writeRegister(0x3200, 454).then(data => {
+        console.log('Turned off');
+    })
+}
+async function readCurrentFrequency(id){
+    await client.setID(id)
+    await client.readHoldingRegisters(0x3305, 1).then(data => {
+        console.log(data);
+    })
+}
+async function setFrequency(id, frequency){
+    await client.setID(id)
+    await client.writeRegister(0x3201, frequency).then(data => {
+        console.log(data);
+    })
+}
+async function readRegister(id, register){
+    await client.readHoldingRegisters(register, 1).then(data => {
+        console.log(register, data);
+    })
+}
 // setInterval(() => {
 //     saveArchive('amper')
 //     saveArchive('voltage')

@@ -18,6 +18,13 @@ router.get('/', (req, res) =>{
     })
 })
 
+function saveFrequencies(frequencies){
+    frequencies.forEach(el => {
+        let sql = `UPDATE frequencies SET value = ${el.value} WHERE name = '${el.name}'`
+        db.query(sql, (err, result) => {
+            if(err) throw err;
+        })
+    });
+}
 
-
-module.exports = { router, getFrequencies };
+module.exports = { router, getFrequencies, saveFrequencies };

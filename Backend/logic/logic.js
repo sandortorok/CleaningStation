@@ -1,6 +1,8 @@
 const { saveInputs, getDInputs } = require('../routes/inputs');
 const { saveOutputs, getDOutputs } = require('../routes/outputs');
 const { saveAInputs, getAInputs } = require('../routes/aInputs');
+const { saveFrequencies, getFrequencies } = require('../routes/frequencies');
+const { getPumpOrder } = require('../routes/pumpOrder');
 
 function dInputs(payload){
     let bin = dec2bin16(payload)    
@@ -59,6 +61,8 @@ function wOut(payload){
 let inputs = []
 let aInputs = []
 let outputs = []
+let frequencies = []
+let pumpOrder = []
 
 getDInputs(result=>{
     inputs = JSON.parse(JSON.stringify(result))
@@ -72,14 +76,55 @@ getDOutputs(result=>{
     outputs = JSON.parse(JSON.stringify(result))
     console.log('Digital Outputs: ', outputs.length);
 })
+getFrequencies(result=>{
+    frequencies = JSON.parse(JSON.stringify(result))
+    console.log('Frequencies: ', frequencies.length);
+})
+getPumpOrder(result=>{
+    pumpOrder = JSON.parse(JSON.stringify(result))
+    console.log('PumpOrder: ', pumpOrder.length);
+})
 let wsOutput;
 
-function calculateOutput(){
-    // FINAL
-    let output1 = `0000000001`;
-    output1 = output1.split("").reverse().join("");
-    wsOutput.output1({num: parseInt(output1, 2)})
 
+
+function getLogicAInputs(callback){
+    callback(aInputs)
+}
+function getLogicDInputs(callback){
+    callback(inputs)
+}
+function getLogicDOutputs(callback){
+    callback(outputs)
+}
+function calculateOutput(){
+    di = inputs.reduce((a, v) => ({...a, [v.name]: v.is_on}), {});
+    Errors = di['M1Error'] || di['M2Error'] || di['M3Error'] || di['F1Error'] || di['F2Error'] || di['F3Error']
+    Running = 0;
+    if(di['Stop'] == true){
+        Running = 0;
+    }
+    else if(di['Start']){
+        Running = 1;
+    }
+    outputs.forEach(out=>{
+        if(out.name == 'Errors'){
+            out.is_on = Errors
+        }
+        else if(out.name == 'Running'){
+            out.is_on = Running
+        }
+        else if(out.name == 'F1Motor' || out.name == 'F2Motor' || out.name == 'F3Motor'){
+            if(!Running || Errors || di['Water_on'] || !di['Auto']){
+                out.is_on = 0;
+            }
+        }
+    })
+    dout = outputs.reduce((a, v) => ({...a, [v.name]: v.is_on}), {});
+
+    // FINAL
+    let output1 = `${Running}${Errors}00${dout['F1Motor']}000${dout['F2Motor']}000${dout['F3Motor']}000`;
+    wsOutput.output1({num: parseInt(output1, 2)})
     saveOutputs(outputs);
 }
 setTimeout(()=>{
@@ -89,7 +134,10 @@ setTimeout(()=>{
 module.exports = {
     dInputs,
     wIn,
-    wOut
+    wOut,
+    getLogicAInputs,
+    getLogicDInputs,
+    getLogicDOutputs
 }
 
 function dec2bin16(dec) {

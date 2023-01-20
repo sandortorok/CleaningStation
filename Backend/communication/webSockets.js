@@ -46,6 +46,7 @@ function sendMSG(message){
 const topic1 = 'Input/1';
 const topic2 = 'wOut';
 const topic3 = 'wIn';
+const topic4 = 'Output/1';
 
 client.on('connect', () => {
   console.log('Connected to MQTT');
@@ -58,11 +59,8 @@ client.on('connect', () => {
   client.subscribe([topic3], () => {
     console.log(`Subscribe to topic "${topic3}"`);
   })
-  client.subscribe(['Output/1'], () => {
-    console.log(`Subscribe to topic "Output/1"`);
-  })
-  client.subscribe(['Output/2'], () => {
-    console.log(`Subscribe to topic "Output/2"`);
+  client.subscribe([topic4], () => {
+    console.log(`Subscribe to topic "${topic4}"`);
   })
 })
 
@@ -70,21 +68,27 @@ const logicFunctions = require('../logic/logic')
 client.on('message', (topic, payload) => {
   if(topic === topic1){
     logicFunctions.dInputs(parseInt(payload.toString()));
-    getDInputs(result => {
+    logicFunctions.getLogicDInputs(result => {
       result = JSON.parse(JSON.stringify(result))
       sendMSG(JSON.stringify({dInputs: result}))
     });
   }
-  else if(topic === 'wIn'){
+  else if(topic === topic4){
+    logicFunctions.getLogicDOutputs(result => {
+      result = JSON.parse(JSON.stringify(result))
+      sendMSG(JSON.stringify({dOutputs: result}))
+    });
+  }
+  else if(topic === topic3){
     logicFunctions.wIn(parseFloat(payload.toString()));
-    getAInputs(result => {
+    logicFunctions.getLogicAInputs(result => {
       result = JSON.parse(JSON.stringify(result))
       sendMSG(JSON.stringify({aInputs: result}))
     });
   }
-  else if(topic === 'wOut'){
+  else if(topic === topic2){
     logicFunctions.wOut(parseFloat(payload.toString()));
-    getAInputs(result => {
+    logicFunctions.getLogicAInputs(result => {
       result = JSON.parse(JSON.stringify(result))
       sendMSG(JSON.stringify({aInputs: result}))
     });
