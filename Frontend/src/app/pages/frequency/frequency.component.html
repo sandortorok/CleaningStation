@@ -1,33 +1,53 @@
-<div class=" content">
-  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; text-align: center;">
-      <h1>Be-/Kikapcsolva</h1>
-      <h1>Víz áramlás</h1>
-      <h1>Automata</h1>
-      <app-on-off-button [is_on]="running"></app-on-off-button>
-      <app-on-off-button [is_on]="waterOn"></app-on-off-button>
-      <app-on-off-button [is_on]="auto"></app-on-off-button>
+<div class="content">
+  <div
+    style="
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      text-align: center;
+      margin-bottom: 25px;
+    "
+  >
+    <h1>Be-/Kikapcsolva</h1>
+    <h1>Víz áramlás</h1>
+    <h1>Automata</h1>
+    <app-on-off-button [is_on]="running"></app-on-off-button>
+    <app-on-off-button [is_on]="waterOn"></app-on-off-button>
+    <app-on-off-button [is_on]="auto"></app-on-off-button>
   </div>
-  <h1 style="margin-top: 30px">Frekvenciaváltók</h1>
-  <div style="display: flex;gap:50px">
-    <div style="display: inline-block; text-align: center;">
-      <h3>1-es szivattyú</h3>
-      <app-pump-svg [speed]="speed1"></app-pump-svg>
-      <h3 style="margin-top:20px">{{speed1}} Hz</h3>
+  <h1 style="padding-top: 25px; border-top: 2px solid #525f7f">
+    Frekvenciaváltók
+  </h1>
+  <div style="display: flex; flex-direction: column">
+    <div style="display: flex; gap: 50px">
+      <div style="display: inline-block; text-align: center">
+        <h3>1-es szivattyú</h3>
+        <h3 style="margin-top: 20px">{{ speed1 }} Hz</h3>
+        <div>
+          <app-pump-svg [speed]="speed1"></app-pump-svg>
+        </div>
+      </div>
+      <div style="display: inline-block; text-align: center">
+        <h3>2-es szivattyú</h3>
+        <h3 style="margin-top: 20px">{{ speed2 }} Hz</h3>
+        <div>
+          <app-pump-svg [speed]="speed2"></app-pump-svg>
+        </div>
+      </div>
+      <div style="display: inline-block; text-align: center">
+        <h3>3-as szivattyú</h3>
+        <h3 style="margin-top: 20px">{{ speed3 }} Hz</h3>
+        <div>
+          <app-pump-svg [speed]="speed3"></app-pump-svg>
+        </div>
+      </div>
     </div>
-    <div style="display: inline-block; text-align: center;">
-      <h3>2-es szivattyú</h3>
-      <app-pump-svg [speed]="speed2"></app-pump-svg>
-      <h3 style="margin-top:20px">{{speed2}} Hz</h3>
-    </div>
-    <div style="display: inline-block; text-align: center;">
-      <h3>3-as szivattyú</h3>
-      <app-pump-svg [speed]="speed3"></app-pump-svg>
-      <h3 style="margin-top:20px">{{speed3}} Hz</h3>
+    <div
+      style="margin-top: 30px; padding-top: 25px; border-top: 2px solid #525f7f"
+    >
+      <h3>Hőmérséklet: 20 °C</h3>
+      <h3>Bemenő nyomás: {{ wIn }} bar</h3>
+      <h3>Kimenő nyomás: {{ wOut }} bar</h3>
+      <h3>Cél nyomás: {{ wGoal }} bar</h3>
     </div>
   </div>
-  <h3>Hőmérséklet: 20 °C</h3>
-  <h3>Bemenő nyomás: {{wIn}} bar</h3>
-  <h3>Kimenő nyomás: {{wOut}} bar</h3>
-  <h3>Cél nyomás: {{wGoal}} bar</h3>
-
 </div>
