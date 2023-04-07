@@ -24,10 +24,8 @@ export class WebsocketService {
   private dOutput$ = new BehaviorSubject<dOutput[]>([]);
   dOutputCast = this.dOutput$.asObservable();
   // webSocket: WebSocket = new WebSocket('ws://10.100.0.233:3000/');
-<<<<<<< HEAD
-  webSocket: WebSocket = new WebSocket("ws://192.168.15.=======
+  // webSocket: WebSocket = new WebSocket("ws://192.168.15.=======
   webSocket: WebSocket = new WebSocket("ws://192.168.0.15:3000/");
->>>>>>> 22d895c98be705fae658c22a3f697ac6188752f5
   // webSocket: WebSocket = new WebSocket("ws://localhost:3000/");
 
   constructor() {
