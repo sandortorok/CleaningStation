@@ -1,7 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
-
 #bg {
-  background-image: url('/assets/img/hungerit.jpg');
+  background-image: url("/assets/img/hungerit.jpg");
   position: fixed;
   left: 0;
   top: 0;
@@ -12,8 +10,8 @@
 }
 
 ::ng-deep .body {
-  font-family: 'Lato', sans-serif;
-  color: #4A4A4A;
+  font-family: sans-serif;
+  color: #4a4a4a;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,8 +53,8 @@ form .form-field {
   align-items: center;
   margin-bottom: 1rem;
   position: relative;
-  margin-top:1rem;
-  margin-bottom:0;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 form input {
   font-family: inherit;
@@ -69,7 +67,7 @@ form input {
   padding: 0.9rem 0.7rem;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   font-size: 17px;
-  color: #4A4A4A;
+  color: #4a4a4a;
   text-indent: 40px;
 }
 form .btn {
@@ -80,16 +78,16 @@ form .btn {
   margin: 0 auto;
   padding: 0.9rem 2.5rem;
   text-align: center;
-  background-color: #47AB11;
+  background-color: #47ab11;
   color: #fff;
   border-radius: 4px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   font-size: 17px;
 }
 
-
-.ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42a948; /* green */
 }
 
 .ng-dirty.ng-invalid[required] {
