@@ -72,8 +72,8 @@ function sendMSG(message) {
 }
 
 const topic1 = "Input/1";
-const topic2 = "wOut";
-const topic3 = "wIn";
+const topic3 = "Analog/1";
+const topic2 = "Analog/2";
 const topic4 = "Output/1";
 
 client.on("connect", () => {
