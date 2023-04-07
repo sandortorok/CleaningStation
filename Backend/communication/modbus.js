@@ -12,7 +12,7 @@ var saveInterval
 async function connect() {
     try {
         await client.connectRTUBuffered("/dev/ttyUSB0", { baudRate: 9600, dataBits: 8, stopBits: 1, parity: 'none'});
-        await client.setID(5);
+        await client.setID(1);
         console.log('\x1b[33m%s\x1b[0m', 'Connected to Modbus');
         return 0
     }
@@ -33,9 +33,9 @@ async function start() {
         const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
         await delay(5000) /// waiting 1 second.
     }
-    await turnOffMotor(1);
-    await setFrequency(1, 3000)
-    await readCurrentFrequency(1)
+    await turnOffMotor(2);
+    await setFrequency(2, 3800)
+    //await readCurrentFrequency(1)
 
     //0000111
 }

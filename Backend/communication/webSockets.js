@@ -7,7 +7,7 @@ const logicFunctions = require("../logic/logic");
 
 const wss = new WebSocket.Server({ server: server });
 const mqtt = require("mqtt");
-const host = "mqtt://localhost:1883";
+const host = "mqtt://192.168.0.15:1883";
 const client = mqtt.connect(host);
 
 wss.on("connection", (ws) => {

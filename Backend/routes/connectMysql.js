@@ -6,6 +6,8 @@ var db = mysql.createPool({
   password: "sakkiraly11",
   database: "cleaningStation",
   multipleStatements: true,
+  socketPath: '/var/run/mysqld/mysqld.sock'
+
 });
 
 module.exports = db;

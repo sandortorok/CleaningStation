@@ -18,7 +18,6 @@ const minFrequency = 25;
 function changeSpeeds(inputs, aInputs) {
   let dIn = inputs.reduce((a, v) => ({ ...a, [v.name]: v.is_on }), {});
   let aIn = aInputs.reduce((a, v) => ({ ...a, [v.name]: v.value }), {});
-  console.log(currentFrequencies);
   let increaseAmount = 0;
   if (aIn["wGoal"] - aIn["wOut"] > 0.5) {
     increaseAmount += 5;
