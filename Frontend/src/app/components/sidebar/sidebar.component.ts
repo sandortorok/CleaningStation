@@ -5,7 +5,7 @@ declare interface RouteInfo {
   title: string;
   icon: string;
   class: string;
-  isCollapsed?: boolean,
+  isCollapsed?: boolean;
   children?: RouteInfo[];
 }
 export const ROUTES: RouteInfo[] = [
@@ -16,33 +16,33 @@ export const ROUTES: RouteInfo[] = [
     class: "",
     children: [
       {
-        path: '/temp',
+        path: "/temp",
         title: "Hőmérséklet",
         icon: "",
-        class: ""
+        class: "",
       },
       {
-        path: '/pressure',
+        path: "/pressure",
         title: "Nyomások",
         icon: "",
-        class: ""
+        class: "",
       },
       {
-        path: '/water',
+        path: "/water",
         title: "Vízmennyiség",
         icon: "",
-        class: ""
-      }
-    ]
+        class: "",
+      },
+    ],
   },
   {
     path: "/icons",
     title: "Icons",
     icon: "icon-atom",
-    class: ""
+    class: "",
   },
   // {
-    //   path: "/notifications",
+  //   path: "/notifications",
   //   title: "Értesítések",
   //   icon: "icon-bell-55",
   //   class: ""
@@ -52,40 +52,46 @@ export const ROUTES: RouteInfo[] = [
     path: "/fchanger",
     title: "Frekvenciaváltó",
     icon: "icon-sound-wave",
-    class: ""
+    class: "",
   },
   {
     path: "/errors",
     title: "Hibaüzenetek",
     icon: "icon-simple-remove",
-    class: ""
+    class: "",
   },
   {
     path: "/settings",
     title: "Beállítások",
     icon: "icon-settings-gear-63",
-    class: ""
+    class: "",
   },
   {
     path: "/io",
     title: "Bemenetek/Kimenetek",
     icon: "icon-link-72",
-    class: ""
-  }
+    class: "",
+  },
+  {
+    path: "teszt",
+    title: "Teszt",
+    icon: "icon-triangle-right-17",
+    class: "",
+  },
 ];
 
 @Component({
   selector: "app-sidebar",
   templateUrl: "./sidebar.component.html",
-  styleUrls: ["./sidebar.component.css"]
+  styleUrls: ["./sidebar.component.css"],
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
-    this.changeSidebarColor('blue')
+    this.menuItems = ROUTES.filter((menuItem) => menuItem);
+    this.changeSidebarColor("blue");
   }
   isMobileMenu() {
     if (window.innerWidth > 991) {
@@ -93,15 +99,15 @@ export class SidebarComponent implements OnInit {
     }
     return true;
   }
-  changeSidebarColor(color){
-    var sidebar = document.getElementsByClassName('sidebar')[0];
-    var mainPanel = document.getElementsByClassName('main-panel')[0];
+  changeSidebarColor(color) {
+    var sidebar = document.getElementsByClassName("sidebar")[0];
+    var mainPanel = document.getElementsByClassName("main-panel")[0];
 
-    if(sidebar != undefined){
-        sidebar.setAttribute('data',color);
+    if (sidebar != undefined) {
+      sidebar.setAttribute("data", color);
     }
-    if(mainPanel != undefined){
-        mainPanel.setAttribute('data',color);
+    if (mainPanel != undefined) {
+      mainPanel.setAttribute("data", color);
     }
   }
 }

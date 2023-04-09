@@ -4,7 +4,7 @@ app = express();
 const server = (module.exports = require("http").createServer(app));
 
 require("./communication/webSockets");
-var modbus = require("./communication/modbus");
+var modbus = require("./communication/modbus").router;
 var inputs = require("./routes/inputs").router;
 var outputs = require("./routes/outputs").router;
 var aInputs = require("./routes/aInputs").router;

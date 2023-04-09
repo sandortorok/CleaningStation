@@ -3,6 +3,8 @@ const WebSocket = require("ws");
 const { getDInputs } = require("../routes/inputs");
 const { getDOutputs } = require("../routes/outputs");
 const { getAInputs } = require("../routes/aInputs");
+const { turnOnMotor, turnOffMotor, setFrequency } = require("./modbus");
+
 const logicFunctions = require("../logic/logic");
 
 const wss = new WebSocket.Server({ server: server });
@@ -39,6 +41,13 @@ wss.on("connection", (ws) => {
 
   ws.on("message", (message) => {
     let parsed = JSON.parse(message);
+    if (parsed && parsed.start) {
+      turnOnMotor(parsed.start);
+    } else if (parsed && parsed.stop) {
+      turnOffMotor(parsed.stop);
+    } else if (parsed && parsed.change) {
+      setFrequency(parsed.change, parsed.value * 100);
+    }
     if (parsed && parsed.num) {
       let topic = JSON.parse(message).topic;
       let num = JSON.parse(message).num.toString();

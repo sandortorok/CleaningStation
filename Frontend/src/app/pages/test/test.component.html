@@ -1,0 +1,37 @@
+<div class="content">
+  <div style="display: flex; gap: 30px; flex-direction: column">
+    <div class="freq-wrapper">
+      <h1>Frekvenciaváltó 1</h1>
+      <div style="display: flex; gap: 30px">
+        <div class="myButton" (click)="startClick(1)">Start</div>
+        <div class="myButton" (click)="stopClick(1)">Stop</div>
+        <input type="number" [(ngModel)]="freq1Val" />
+        <div class="myButton" (click)="changeFreq(1, freq1Val)">
+          Change Frequency
+        </div>
+      </div>
+    </div>
+    <div class="freq-wrapper">
+      <h1>Frekvenciaváltó 2</h1>
+      <div style="display: flex; gap: 30px">
+        <div class="myButton" (click)="startClick(2)">Start</div>
+        <div class="myButton" (click)="stopClick(2)">Stop</div>
+        <input type="number" [(ngModel)]="freq2Val" />
+        <div class="myButton" (click)="changeFreq(2, freq2Val)">
+          Change Frequency
+        </div>
+      </div>
+    </div>
+    <div class="freq-wrapper">
+      <h1>Frekvenciaváltó 3</h1>
+      <div style="display: flex; gap: 30px">
+        <div class="myButton" (click)="startClick(3)">Start</div>
+        <div class="myButton" (click)="stopClick(3)">Stop</div>
+        <input type="number" [(ngModel)]="freq3Val" />
+        <div class="myButton" (click)="changeFreq(3, freq3Val)">
+          Change Frequency
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

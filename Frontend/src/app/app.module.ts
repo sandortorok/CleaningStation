@@ -20,6 +20,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { TokenInterceptor } from './interceptors/token-interceptor';
 import { ForbiddenValidatorDirective } from './validators/forbidden-name.directive';
 import { InputOutputComponent } from './pages/input-output/input-output.component';
+import { TestComponent } from './pages/test/test.component';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { InputOutputComponent } from './pages/input-output/input-output.componen
     AppRoutingModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, SanitizeHtmlPipe, LoginComponent, ForbiddenValidatorDirective],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, SanitizeHtmlPipe, LoginComponent, ForbiddenValidatorDirective, TestComponent],
   providers: [ExcelService, WebsocketService,
      { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
       { provide: NG_VALIDATORS, useExisting: ForbiddenValidatorDirective, multi: true }],
