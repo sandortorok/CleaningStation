@@ -52,6 +52,7 @@ export class WebsocketService {
         } else if (data.aInputs != undefined) {
           this.aInput$.next(data.aInputs);
         } else if (data.dOutputs != undefined) {
+          console.log(data.dOutputs);
           this.dOutput$.next(data.dOutputs);
         }
       }

@@ -35,12 +35,7 @@ export const ROUTES: RouteInfo[] = [
       },
     ],
   },
-  {
-    path: "/icons",
-    title: "Icons",
-    icon: "icon-atom",
-    class: "",
-  },
+
   // {
   //   path: "/notifications",
   //   title: "Értesítések",
@@ -76,6 +71,12 @@ export const ROUTES: RouteInfo[] = [
     path: "teszt",
     title: "Teszt",
     icon: "icon-triangle-right-17",
+    class: "",
+  },
+  {
+    path: "/icons",
+    title: "Icons",
+    icon: "icon-atom",
     class: "",
   },
 ];

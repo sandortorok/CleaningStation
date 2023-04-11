@@ -24,7 +24,6 @@ function addErrorMessage(message) {
     ("00" + date.getUTCMinutes()).slice(-2) +
     ":" +
     ("00" + date.getUTCSeconds()).slice(-2);
-  console.log(date);
 
   let sql = `INSERT INTO errorMessages (message, timestamp) values ('${message}', '${date}')`;
   db.query(sql, (err, result) => {
@@ -40,4 +39,4 @@ function saveInputs(inputs) {
   });
 }
 
-module.exports = { router };
+module.exports = { router, addErrorMessage };

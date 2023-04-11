@@ -36,11 +36,6 @@ async function start() {
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     await delay(5000); /// waiting 1 second.
   }
-  await turnOffMotor(2);
-  await setFrequency(2, 3800);
-  //await readCurrentFrequency(1)
-
-  //0000111
 }
 async function turnOnMotor(id) {
   try {

@@ -3,24 +3,27 @@ const { saveOutputs, getDOutputs } = require("../routes/outputs");
 const { saveAInputs, getAInputs } = require("../routes/aInputs");
 const { saveFrequencies, getFrequencies } = require("../routes/frequencies");
 const { changeSpeeds } = require("./speeds");
+const { addErrorMessage } = require("../routes/errorMessages");
+
 function dInputs(payload) {
-  let bin = dec2bin16(payload);
-  let obj = {
-    M1Error: parseInt(bin[0]),
-    M2Error: parseInt(bin[1]),
-    M3Error: parseInt(bin[2]),
-    Water_on: parseInt(bin[3]),
-    Start: parseInt(bin[4]),
-    Stop: parseInt(bin[5]),
-    F1Error: parseInt(bin[6]),
-    F2Error: parseInt(bin[7]),
-    F3Error: parseInt(bin[8]),
-    Auto: parseInt(bin[9]),
-  };
+  let obj = payload["d"];
   let inputChanged = false;
   inputs.forEach((input) => {
     if (Object.keys(obj).includes(input.name)) {
       if (input.is_on != obj[input.name]) {
+        if (
+          [
+            "F1Error",
+            "F2Error",
+            "F3Error",
+            "M1Error",
+            "M2Error",
+            "M3Error",
+          ].includes(input.name) &&
+          obj[input.name] == 1
+        ) {
+          addErrorMessage(inputToErrorMessage(input.name));
+        }
         input.is_on = obj[input.name];
         console.log(`Input ${input.name} changed to ${input.is_on}`);
         inputChanged = true;
@@ -33,12 +36,11 @@ function dInputs(payload) {
   calculateOutput();
 }
 function wIn(payload) {
-  inputChanged = false;
+  let newValue = payload["d"]["Bemenet"];
   aInputs.forEach((ai) => {
     if (ai.name == "wIn") {
-      if (ai.value != payload) {
-        inputChanged = true;
-        ai.value = payload;
+      if (ai.value != newValue) {
+        ai.value = newValue;
         saveAInputs([ai]);
       }
     }
@@ -46,21 +48,22 @@ function wIn(payload) {
   calculateOutput();
 }
 function wOut(payload) {
+  let newValue = payload["d"]["Kimenet"];
   aInputs.forEach((ai) => {
     if (ai.name == "wOut") {
-      if (ai.value != payload) {
-        ai.value = payload;
+      if (ai.value != newValue) {
+        ai.value = newValue;
         saveAInputs([ai]);
       }
     }
   });
   calculateOutput();
 }
-function wGoal(payload) {
+function wGoal(newValue) {
   aInputs.forEach((ai) => {
     if (ai.name == "wGoal") {
-      if (ai.value != payload) {
-        ai.value = payload;
+      if (ai.value != newValue) {
+        ai.value = newValue;
         saveAInputs([ai]);
       }
     }
@@ -108,12 +111,7 @@ function calculateOutput() {
     di["F1Error"] ||
     di["F2Error"] ||
     di["F3Error"];
-  Running = 0;
-  if (di["Stop"] == true) {
-    Running = 0;
-  } else if (di["Start"]) {
-    Running = 1;
-  }
+  Running = +di["Start"];
   outputs.forEach((out) => {
     if (out.name == "Errors") {
       out.is_on = Errors;
@@ -139,29 +137,31 @@ function calculateOutput() {
   changeSpeeds(inputs, aInputs);
   dout = outputs.reduce((a, v) => ({ ...a, [v.name]: v.is_on }), {});
   // FINAL
-  let output1 = `${Running}${Errors}00${dout["F1Motor"]}000${dout["F2Motor"]}000${dout["F3Motor"]}000`;
-  wsOutput.output1({ num: parseInt(output1, 2) });
+  wsOutput.output1(dout);
   saveOutputs(outputs);
 }
 
+function inputToErrorMessage(input) {
+  switch (input) {
+    case "F1Error":
+      return "1-es Frekvenciaváltó hiba";
+    case "F2Error":
+      return "2-es Frekvenciaváltó hiba";
+    case "F3Error":
+      return "3-as Frekvenciaváltó hiba";
+    case "M1Error":
+      return "1-es Motor hiba";
+    case "F3Error":
+      return "2-es Motor hiba";
+    case "F3Error":
+      return "3-as Motor hiba";
+    default:
+      return "Ismeretlen hiba";
+  }
+}
 setTimeout(() => {
   wsOutput = require("../communication/webSockets");
 }, 10);
-
-function dec2bin16(dec) {
-  let bin = (dec >>> 0).toString(2);
-  if (bin.length > 16) {
-    return bin;
-  }
-  while (bin.length != 16) {
-    bin = "0" + bin;
-  }
-  return bin;
-}
-
-function reverse(s) {
-  return s.split("").reverse().join("");
-}
 
 module.exports = {
   dInputs,

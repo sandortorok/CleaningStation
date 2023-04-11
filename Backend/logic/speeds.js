@@ -16,6 +16,7 @@ let lastAInputs;
 const minFrequency = 25;
 
 function changeSpeeds(inputs, aInputs) {
+  if (!currentFrequencies) return;
   let dIn = inputs.reduce((a, v) => ({ ...a, [v.name]: v.is_on }), {});
   let aIn = aInputs.reduce((a, v) => ({ ...a, [v.name]: v.value }), {});
   let increaseAmount = 0;

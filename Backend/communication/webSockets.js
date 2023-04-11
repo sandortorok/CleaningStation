@@ -10,6 +10,8 @@ const logicFunctions = require("../logic/logic");
 const wss = new WebSocket.Server({ server: server });
 const mqtt = require("mqtt");
 const host = "mqtt://192.168.0.15:1883";
+// const host = "mqtt://localhost:1883";
+
 const client = mqtt.connect(host);
 
 wss.on("connection", (ws) => {
@@ -80,9 +82,9 @@ function sendMSG(message) {
   });
 }
 
-const topic1 = "Input/1";
-const topic3 = "Analog/1";
-const topic2 = "Analog/2";
+const topic1 = "Inputs";
+const topic2 = "Analog/1";
+const topic3 = "Analog/2";
 const topic4 = "Output/1";
 
 client.on("connect", () => {
@@ -104,27 +106,27 @@ client.on("connect", () => {
 const { getFrequencies } = require("../routes/frequencies");
 client.on("message", (topic, payload) => {
   if (topic === topic1) {
-    logicFunctions.dInputs(parseInt(payload.toString()));
+    logicFunctions.dInputs(JSON.parse(payload.toString()));
     logicFunctions.getLogicDInputs((result) => {
       result = JSON.parse(JSON.stringify(result));
       sendMSG(JSON.stringify({ dInputs: result }));
+    });
+  } else if (topic === topic2) {
+    logicFunctions.wIn(JSON.parse(payload.toString()));
+    logicFunctions.getLogicAInputs((result) => {
+      result = JSON.parse(JSON.stringify(result));
+      sendMSG(JSON.stringify({ aInputs: result }));
+    });
+  } else if (topic === topic3) {
+    logicFunctions.wOut(JSON.parse(payload.toString()));
+    logicFunctions.getLogicAInputs((result) => {
+      result = JSON.parse(JSON.stringify(result));
+      sendMSG(JSON.stringify({ aInputs: result }));
     });
   } else if (topic === topic4) {
     logicFunctions.getLogicDOutputs((result) => {
       result = JSON.parse(JSON.stringify(result));
       sendMSG(JSON.stringify({ dOutputs: result }));
-    });
-  } else if (topic === topic3) {
-    logicFunctions.wIn(parseFloat(payload.toString()));
-    logicFunctions.getLogicAInputs((result) => {
-      result = JSON.parse(JSON.stringify(result));
-      sendMSG(JSON.stringify({ aInputs: result }));
-    });
-  } else if (topic === topic2) {
-    logicFunctions.wOut(parseFloat(payload.toString()));
-    logicFunctions.getLogicAInputs((result) => {
-      result = JSON.parse(JSON.stringify(result));
-      sendMSG(JSON.stringify({ aInputs: result }));
     });
   } else {
     newMsg = { topic: topic, payload: payload.toString() };
@@ -132,25 +134,24 @@ client.on("message", (topic, payload) => {
   }
 });
 
-function output1(msg) {
-  let newMsg = { ...msg, topic: "output1" };
+function output1(output) {
+  output = { d: output, topic: "output1" };
   client.publish(
     "Output/1",
-    JSON.stringify(newMsg),
+    JSON.stringify(output),
     { qos: 0, retain: false },
     (error) => {
       if (error) {
         console.error(error);
       }
-      sendMSG(JSON.stringify(newMsg));
     }
   );
 }
-function output2(msg) {
-  let newMsg = { ...msg, topic: "output2" };
+function output2(output) {
+  output = { d: output, topic: "output2" };
   client.publish(
     "Output/2",
-    JSON.stringify(newMsg),
+    JSON.stringify(output),
     { qos: 0, retain: false },
     (error) => {
       if (error) {
